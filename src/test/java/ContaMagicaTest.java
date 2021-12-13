@@ -24,7 +24,7 @@ class ContaMagicaTest {
 
     @Test
     void deveAtualizarCategoriaParaPlatinium() {
-        c1.deposita(new BigDecimal("200000"));
+        c1.deposita(new BigDecimal("100000"));
         assertEquals(Categoria.PLATINIUM, c1.getCategoria());
 
     }
