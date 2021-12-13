@@ -18,7 +18,7 @@ class TesteContaMagica {
 
     @Test
     void deveAtualizarCategoriaParaGold() {
-        c1.deposita(new BigDecimal("50010"));
+        c1.deposita(new BigDecimal("4000"));
         assertEquals(Categoria.GOLD, c1.getCategoria());
 
     }

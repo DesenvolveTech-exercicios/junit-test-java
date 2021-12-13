@@ -49,13 +49,11 @@ public class ContaMagica {
 
         if ((gold > 0) || (gold == 0)) {
             setCategoria(Categoria.GOLD);
-            System.out.println("Miga gora cê é gold");
            setSaldo( saldo.add(valor.multiply(new BigDecimal("0.01"))));
         }
         if ((platinium > 0) || (platinium == 0)) {
             setCategoria(Categoria.PLATINIUM);
             setSaldo(saldo.add(valor.multiply(new BigDecimal("0.025"))));
-            System.out.println("Agora você é platinium");
         }
     }
 
@@ -65,10 +63,8 @@ public class ContaMagica {
             setSaldo(saldo.subtract(valor));
             if((getSaldo().compareTo(new BigDecimal("100000")) < 0) && getCategoria() == Categoria.PLATINIUM ){
                 setCategoria(Categoria.GOLD);
-                System.out.println("Migah Cê tá pobre! Desceu pra gold");
             } else if((getSaldo().compareTo(new BigDecimal("25000"))< 0) && getCategoria() == Categoria.GOLD) {
                 setCategoria(Categoria.SILVER);
-                System.out.println("Migah A falência Chegando na sua porta! Desceu pra Silver");
             }
         }
     }
