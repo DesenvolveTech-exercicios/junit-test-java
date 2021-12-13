@@ -21,7 +21,6 @@ class TesteContaMagica {
         c1.deposita(new BigDecimal("40000"));
         c1.deposita(new BigDecimal("10000"));
         c1.deposita(new BigDecimal("10"));
-        System.out.println(c1.getSaldo());
         assertEquals(Categoria.GOLD, c1.getCategoria());
 
     }
@@ -29,7 +28,6 @@ class TesteContaMagica {
     @Test
     void deveAtualizarCategoriaParaPlatinium() {
         c1.deposita(new BigDecimal("200000"));
-        System.out.println(c1.getSaldo());
         assertEquals(Categoria.PLATINIUM, c1.getCategoria());
 
     }
@@ -38,7 +36,6 @@ class TesteContaMagica {
     void deveRetirarValor() {
         c1.deposita(new BigDecimal("20000"));
         c1.retirada(new BigDecimal("10000"));
-        System.out.println(c1.getSaldo());
         assertEquals(new BigDecimal("10000"), c1.getSaldo());
     }
 
@@ -46,7 +43,6 @@ class TesteContaMagica {
     void deveAtualizarDePlatinumParaGold() {
         c1.deposita(new BigDecimal("200000"));
         c1.retirada(new BigDecimal("110000"));
-        System.out.println(c1.getSaldo());
         assertEquals(Categoria.GOLD, c1.getCategoria());
     }
 
