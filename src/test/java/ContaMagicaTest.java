@@ -7,8 +7,7 @@ import java.math.BigDecimal;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-
-class TesteContaMagica {
+class ContaMagicaTest {
     private ContaMagica c1;
 
     @BeforeEach
@@ -18,7 +17,7 @@ class TesteContaMagica {
 
     @Test
     void deveAtualizarCategoriaParaGold() {
-        c1.deposita(new BigDecimal("4000"));
+        c1.deposita(new BigDecimal("50010"));
         assertEquals(Categoria.GOLD, c1.getCategoria());
 
     }
