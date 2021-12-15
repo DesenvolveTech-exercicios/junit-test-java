@@ -4,34 +4,40 @@ import enums.Categoria;
 import lombok.*;
 
 import java.math.BigDecimal;
+import java.util.Map;
 
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class ContaMagica {
+    @NonNull
     private String nome;
+    @NonNull
     private BigDecimal saldo;
+    @NonNull
     private Categoria categoria;
+    private Map<Categoria,BigDecimal> multiple = Map.ofEntries(
+            Map.entry(Categoria.SILVER, BigDecimal.valueOf(1)),
+            Map.entry(Categoria.GOLD, BigDecimal.valueOf(0.01)),
+            Map.entry(Categoria.PLATINIUM, BigDecimal.valueOf(0.025)));
 
-//    public int recebe(BigDecimal valor){
-//        return 0;
-//    }
+    public Categoria update(BigDecimal saldoComparar){
+        int gold = saldoComparar.compareTo(BigDecimal.valueOf(50000));
+        int platinium = saldoComparar.compareTo(BigDecimal.valueOf(200000));
+        if((gold >= 0) && (platinium < 0)){
+            return Categoria.GOLD;
+        } else if(platinium >= 0){
+            return Categoria.PLATINIUM;
+        } else{
+            return Categoria.SILVER;
+        }
+    }
 
     public void deposita(BigDecimal valor) {
         setSaldo(saldo.add(valor));
-
-        int gold = saldo.compareTo(BigDecimal.valueOf(50000));
-        int platinium = saldo.compareTo(BigDecimal.valueOf(200000));
-
-        if (gold >= 0 ) {
-            setCategoria(Categoria.GOLD);
-            setSaldo( saldo.add(valor.multiply(new BigDecimal("0.01"))));
-        }
-        if ((platinium > 0) || (platinium == 0)) {
-            setCategoria(Categoria.PLATINIUM);
-            setSaldo(saldo.add(valor.multiply(new BigDecimal("0.025"))));
-        }
+        setCategoria(update(saldo));
+        setSaldo(saldo.add(valor.multiply(multiple.get(categoria))));
     }
 
     public void retirada(BigDecimal valor) {
