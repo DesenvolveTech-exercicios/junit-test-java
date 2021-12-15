@@ -1,55 +1,32 @@
-package entities;
+package models;
 
 import enums.Categoria;
+import lombok.*;
 
 import java.math.BigDecimal;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class ContaMagica {
     private String nome;
     private BigDecimal saldo;
     private Categoria categoria;
 
-    public ContaMagica() {
-    }
-
-    public ContaMagica(String nome, BigDecimal saldo, Categoria categoria) {
-        this.nome = nome;
-        this.saldo = saldo;
-        this.categoria = categoria;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public BigDecimal getSaldo() {
-        return saldo;
-    }
-
-    public void setSaldo(BigDecimal saldo) {
-        this.saldo = saldo;
-    }
-
-    public Categoria getCategoria() {
-        return categoria;
-    }
-
-    public void setCategoria(Categoria categoria) {
-        this.categoria = categoria;
-    }
+//    public int recebe(BigDecimal valor){
+//        return 0;
+//    }
 
     public void deposita(BigDecimal valor) {
         setSaldo(saldo.add(valor));
-        int gold = saldo.compareTo(new BigDecimal("50000"));
-        int platinium = saldo.compareTo(new BigDecimal("200000"));
 
-        if ((gold > 0) || (gold == 0)) {
+        int gold = saldo.compareTo(BigDecimal.valueOf(50000));
+        int platinium = saldo.compareTo(BigDecimal.valueOf(200000));
+
+        if (gold >= 0 ) {
             setCategoria(Categoria.GOLD);
-           setSaldo( saldo.add(valor.multiply(new BigDecimal("0.01"))));
+            setSaldo( saldo.add(valor.multiply(new BigDecimal("0.01"))));
         }
         if ((platinium > 0) || (platinium == 0)) {
             setCategoria(Categoria.PLATINIUM);
@@ -68,9 +45,4 @@ public class ContaMagica {
             }
         }
     }
-
-    public Categoria getStatus() {
-        return getCategoria();
-    }
-
 }

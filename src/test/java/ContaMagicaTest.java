@@ -1,4 +1,4 @@
-import entities.ContaMagica;
+import models.ContaMagica;
 import enums.Categoria;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
