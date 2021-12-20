@@ -42,18 +42,18 @@ class MktBancoTest {
     @Test
     void deveDevolverGoldQuandoACategoriaForSilver(){
         Mockito.when(cta.getCategoria()).thenReturn(Categoria.SILVER);
-        assertEquals(Categoria.GOLD, mktBanco.proxCategoria());
+        assertEquals("GOLD", mktBanco.proxCategoria());
     }
 
     @Test
     void deveDevolverPlatiniumQuandoACategoriaForGold(){
         Mockito.when(cta.getCategoria()).thenReturn(Categoria.GOLD);
-        assertEquals(Categoria.PLATINIUM, mktBanco.proxCategoria());
+        assertEquals("PLATINIUM", mktBanco.proxCategoria());
     }
 
     @Test
     void deveDevolverACategorialAtualQuandoPlatinium(){
         Mockito.when(cta.getCategoria()).thenReturn(Categoria.PLATINIUM);
-        assertEquals(Categoria.PLATINIUM, mktBanco.proxCategoria());
+        assertEquals("PLATINIUM", mktBanco.proxCategoria());
     }
 }
